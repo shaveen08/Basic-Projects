@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Border radius Previewer</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background: rgb(2,0,36);
+            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(14,27,116,1) 32%, rgba(49,51,171,1) 70%, rgba(59,63,122,1) 100%);        }
+        .box{
+            height: 300px; 
+            width: 300px;
+            margin: 40px auto;
+            border: 2px solid rgb(164, 164, 164);
+            box-shadow: 10px 0 10px -5px #12147d,
+                        0 10px 10px -5px #12147d,
+                        -10px 0 10px -5px #12147d,
+                        0 -10px 10px -5px #12147d;
+        }
+        .inputs{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            align-items: center;
+            gap: 5px;
+            margin:0 550px;
+            padding-left: 10px;
+            color: #fff;
+            position: relative;
+            left: 30px;
+        }
+        .inputs input{
+            width: 35px;
+            height: 20px;
+            padding: 5px;
+            outline: none;
+            border: none;
+            color: #eee;
+            background-color: #4635e5;
+        }
+        .overall{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2px;
+        }
+        #btn{
+            position: relative;
+            left: 700px;
+            margin: 30px;
+        }
+        button{
+            padding: 5px 10px;
+            outline: none;
+            border: none;
+        }
+        #output{
+            text-align: center;
+            color: #fff;
+            font-size: large;
+        }
+    </style>
+</head>
+    <div class="wrap">
+        <div class="box"></div>
+        <div class="inputs">
+            <label for="">Top left :</label>
+            <input type="text"  id="top-left">
+
+            <label for="">Top right :</label>
+            <input type="text"  id="top-right">
+
+            <label for="">bottom left :</label>
+            <input type="text"  id="bottom-left">
+
+            <label for="">bottom right :</label>
+            <input type="text"  id="bottom-right">
+        </div>
+        <!--<div class="inputs overall">
+            <label for="">Over all :</label>
+            <input type="text" id="all-sides">
+        </div>-->
+        <button id="btn">Change</button>
+        <p id="output"></p>
+    </div>
+<body>
+    <script>
+        let btn = document.querySelector('#btn');
+        let result = document.querySelector('#output');
+
+        btn.addEventListener('click', () => {
+            let topLeftInput = document.querySelector('#top-left').value;
+            let topRightInput = document.querySelector('#top-right').value;
+            let bottomLeftInput = document.querySelector('#bottom-left').value;
+            let bottomRightInput = document.querySelector('#bottom-right').value;
+            //let overAll = document.querySelector('#all-sides').value;
+
+            let box = document.querySelector('.box');
+
+            // if (parseInt(overAll)) {
+            //     box.style.borderRadius = parseInput(overAll);
+            // } else {
+            //     box.style.borderRadius = '0';
+            // }
+  
+            if (parseInt(topLeftInput)) {
+                box.style.borderTopLeftRadius = `${parseInt(topLeftInput)}px`;
+            } else {
+                box.style.borderTopLeftRadius = 0;
+            }
+
+            if (parseInt(topRightInput)) {
+                box.style.borderTopRightRadius = `${parseInt(topRightInput)}px`;
+            } else {
+                box.style.borderTopRightRadius = 0;
+            }
+
+            if (parseInt(bottomLeftInput)) {
+                box.style.borderBottomLeftRadius = `${parseInt(bottomLeftInput)}px`;
+            } else {
+                box.style.borderBottomLeftRadius = 0;
+            }
+
+            if (parseInt(bottomRightInput)) {
+                box.style.borderBottomRightRadius = `${parseInt(bottomRightInput)}px`;
+            } else {
+                box.style.borderBottomRightRadius = 0;
+            }
+
+            function resultText() {
+            const parseInput = (input) => {
+                const parsedValue = parseInt(input);
+                return isNaN(parsedValue) ? '0px' : `${parsedValue}px`;
+            };
+
+            const topLeftValue = parseInput(topLeftInput);
+            const topRightValue = parseInput(topRightInput);
+            const bottomLeftValue = parseInput(bottomLeftInput);
+            const bottomRightValue = parseInput(bottomRightInput);
+
+            return `border-radius: ${topLeftValue} ${topRightValue} ${bottomLeftValue} ${bottomRightValue};`;
+            }
+            result.innerHTML = resultText();
+        });
+
+    </script>
+</body>
+</html>

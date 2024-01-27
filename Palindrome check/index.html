@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checker</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+            background: #dfdfdf;
+        }
+        .wrapper{
+            height: 250px;
+            width: 400px;
+            background-color: #d8a7a7;
+            margin:100px auto;
+            border: 3px solid rgb(96, 96, 96);
+            border-radius: 12px;
+            
+        }
+        h2{
+            text-align: center;
+            margin: 12px;
+            color: #870707;
+        }
+        input{
+            width: 50%;
+            padding: 18px;
+            font-size: 18px;
+            border-radius: 12px;
+            outline: none;
+            margin-top: 7px; 
+            margin-left: 5%;
+        }
+        button{
+            width: 30%;
+            padding: 18px;
+            margin: 0 5%;
+            font-size: 15px;
+            background: #dfdfdf;
+            border-radius: 12px;
+        }
+        .result{
+            font-size: 18px;
+            margin-top: 8%;
+            margin-left: 6%;
+            /* display: none; */
+        }
+        #info-txt{
+            font-size: 20px;
+            color: #1c1c1c;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <h2>Palindrome Checker</h2>
+        <input type="text" id="text-box">
+        <button type="submit" id="submit" onclick="isPalindrome()">Check</button>
+        <div class="result">
+            <p id="info-txt"></p>
+        </div>
+    </div>
+    <script>
+        function isPalindrome(){
+            let txt = document.getElementById("text-box").value;
+            
+            //console.log(txt);
+            let infoTxt = document.querySelector("#info-txt");
+       
+            let textBox = txt.split("").reverse().join("").toLowerCase();
+            //console.log(textBox);
+            //console.log(textBox === txt);
+              if(txt.length == 0){
+                //infoTxt.style.display = "none";
+                infoTxt.innerHTML = "Oops, I think you forgot to enter something.";
+              } else if (textBox === txt) {
+                //infoTxt.style.display = "block";
+                infoTxt.innerHTML = "Yeah, it is a Palindrome";
+              } else {
+               //infoTxt.style.display = "block";
+                infoTxt.innerHTML = "Nope, it is not a Palindrome";
+              }
+        }
+    </script>
+</body>
+</html>

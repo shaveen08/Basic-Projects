@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bin2Dec</title>
+</head>
+<body>
+    <div class="wrap">
+        <div class="bin2dec">
+            <label>Binary To Decimal:</label>
+            <input type="text" id="bin-text">
+            <button id="convert-bintodec">Convert</button>
+            <p id="result-of-bin"></p>
+        </div>
+
+        <div class="dec2bin">
+            <label>Decimal To Binary:</label>
+            <input type="text" id="dec-text">
+            <button id="convert-dectobin">Convert</button>
+            <p id="result-of-dec"></p>
+        </div>
+    </div>
+    <script>
+        let Btn1 = document.querySelector('#convert-bintodec');
+        Btn1.addEventListener('click', () => {
+            let inputOfBin = document.querySelector('#bin-text').value;
+            let result = document.querySelector('#result-of-bin');
+            
+            let regex = /^[01]+$/;
+            if(regex.test(inputOfBin)){
+                if(inputOfBin.length <= 8){
+                    let bin2Dec = parseInt(inputOfBin, 2);
+                    result.innerHTML = bin2Dec;
+                } else {
+                    alert('Binary input must be 8 characters or less');
+                }
+            } else if (inputOfBin.length === 0) {
+                alert('Binary input cannot be empty');
+            } else {
+                alert('Binary input must contain only 0s and 1s');
+            }
+            });
+
+
+        let Btn2 = document.querySelector('#convert-dectobin');
+        Btn2.addEventListener('click', () => {
+            let inputOfDec = document.querySelector('#dec-text').value;
+            let result = document.querySelector('#result-of-dec');
+            
+            if (inputOfDec.length === 0) {
+                alert('Decimal input cannot be empty');
+            } else if (inputOfDec.length <= 4) {
+                let dec2Bin = parseInt(inputOfDec).toString(2);
+                result.innerHTML = dec2Bin;
+            } else {
+                alert('Decimal input must be 4 characters or less');
+            }
+        });
+    </script>
+</body>
+</html>

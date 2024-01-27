@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family:'digital-7';
+            src: url('./clock/digital-7/digital-7.ttf');
+        }
+        body{
+            background-color: #000;
+        }
+        .wrap{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 200px;
+            width: 500px;
+            border-radius: 25px 25px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+        p{
+            font-size: 90px;
+            width: 300px;
+            text-align: center;
+        }
+        #back-clock, #clock {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        #back-clock{
+            color: rgb(33, 33, 33);
+        }
+        #clock {
+            z-index: 1; 
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <p id="back-clock"></p>
+        <p id="clock"></p>
+    </div>
+    <script>
+        let clock = document.querySelector('#clock');
+        let backClock = document.querySelector('#back-clock');
+
+        function updateClock() {
+            // Getting current time and date
+            let time = new Date();
+            let hours = time.getHours();
+            let minutes = time.getMinutes();
+            let seconds = time.getSeconds();
+            let ampm = hours >= 12 ? 'PM' : 'AM';
+
+            // Setting time for 12 Hrs format
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+
+            hours = (hours < 10) ? "0" + hours : hours;
+            minutes = (minutes < 10) ? "0" + minutes : minutes;
+            seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+            //Display the Clock
+            clock.innerHTML = `${hours}:${minutes}:${seconds}:${ampm}`;
+            backClock.innerHTML = "88:88:88:AM";
+        }
+
+            // Update the clock every second
+            setInterval(updateClock, 1000);
+
+            // Initial call to set the clock when the page loads
+            updateClock();
+
+    </script>
+</body>
+</html>
